@@ -6,7 +6,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0093745d6e4797bd4c103fb856dd5b68"></script>
 </head>
 <body>
-    <div id="map" style="width: 500px; height: 400px;"></div>
+    <div id="map" style="width: 1000px; height: 1000px;"></div>
 
     <script>
         var mapContainer = document.getElementById('map');
@@ -31,6 +31,15 @@
             markers.push(marker);
 
             alert('클릭한 위치 - 위도: ' + lat + ', 경도: ' + lng);
+
+            // 서버로 좌표 데이터 전송
+            fetch('/save-coordinates', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ lat, lng })
+            });
         });
     </script>
 </body>
