@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>카카오 지도 클릭 예제</title>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY"></script>
+</head>
+<body>
+    <div id="map" style="width: 500px; height: 400px;"></div>
+
+    <script>
+        var mapContainer = document.getElementById('map');
+        var options = {
+            center: new kakao.maps.LatLng(37.566826, 126.978656), // 기본 지도 중심 좌표
+            level: 3 // 기본 지도 확대 레벨
+        };
+
+        var map = new kakao.maps.Map(mapContainer, options);
+
+        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+            var latlng = mouseEvent.latLng;
+            var lat = latlng.getLat();
+            var lng = latlng.getLng();
+
+            alert('클릭한 위치 - 위도: ' + lat + ', 경도: ' + lng);
+        });
+    </script>
+</body>
+</html>
