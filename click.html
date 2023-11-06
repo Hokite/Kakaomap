@@ -16,11 +16,19 @@
         };
 
         var map = new kakao.maps.Map(mapContainer, options);
+        var markers = []; // 마커 배열
 
         kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             var latlng = mouseEvent.latLng;
             var lat = latlng.getLat();
             var lng = latlng.getLng();
+
+            var marker = new kakao.maps.Marker({
+                position: latlng
+            });
+
+            marker.setMap(map);
+            markers.push(marker);
 
             alert('클릭한 위치 - 위도: ' + lat + ', 경도: ' + lng);
         });
